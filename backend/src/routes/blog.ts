@@ -15,11 +15,14 @@ export const blogRouter = new Hono<{
 
 blogRouter.use("/*",async (c, next)=>{
     const authHeader = c.req.header("authorization") || "";
-    const user = await verify(authHeader , c.env.JWT_SECRET)
-    if(user){
-        c.set("userId", user.id);
-       await next();
-    } else{
+    try {
+        const user = await verify(authHeader , c.env.JWT_SECRET)
+        if(user){
+            c.set("userId", user.id);
+           await next();
+        } 
+    } catch (error) {
+        console.log(error);
         return c.json({
             msg: "you are not logged in"
         })
@@ -88,7 +91,7 @@ blogRouter.put('/', async (c) => {
       }
   })
 
-  
+
 blogRouter.get('/bulk', async (c) => {
    
     const prisma = new PrismaClient({

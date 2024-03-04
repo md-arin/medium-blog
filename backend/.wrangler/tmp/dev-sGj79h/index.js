@@ -8484,11 +8484,14 @@ var import_edge2 = __toESM(require_edge3());
 var blogRouter = new Hono2();
 blogRouter.use("/*", async (c, next) => {
   const authHeader = c.req.header("authorization") || "";
-  const user = await verify2(authHeader, c.env.JWT_SECRET);
-  if (user) {
-    c.set("userId", user.id);
-    await next();
-  } else {
+  try {
+    const user = await verify2(authHeader, c.env.JWT_SECRET);
+    if (user) {
+      c.set("userId", user.id);
+      await next();
+    }
+  } catch (error) {
+    console.log(error);
     return c.json({
       msg: "you are not logged in"
     });
