@@ -40,7 +40,7 @@ userRouter.post('/signup', async(c) => {
       }, c.env.JWT_SECRET)
   
       return c.json({
-        msg: "Signup successfully",
+        name: user.name,
         jwt
       })
       
@@ -84,7 +84,7 @@ userRouter.post('/signup', async(c) => {
       }, c.env.JWT_SECRET)
   
       return c.json({
-        msg: "Signin successfully",
+        name: user.name,
         jwt
       })
       
