@@ -52,7 +52,7 @@ export function BlogCard({
     )
 }
 
-const Circle = ()=> {
+export const Circle = ()=> {
     return(
         <div className=" h-1 w-1 bg-slate-500 rounded-full">
             
