@@ -6,7 +6,7 @@ function FullBlog({ blog }: {blog: Blog}) {
   return (
          <div className=' lg:mx-32'>
             <div className=' md:grid grid-cols-12 px-10 w-full pt-10 max-w-screen-2xl'>
-                <div className=' col-span-8 pb-4 pr-2'>
+                <div className=' col-span-8 pb-4 pr-6'>
                     <div className=' text-5xl font-extrabold'>
                         {blog.title}
                     </div>

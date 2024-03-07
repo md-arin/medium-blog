@@ -31,6 +31,7 @@ async function handleRequest() {
 
   return (
     <div className=' h-screen flex justify-center flex-col'>
+        
        <div className=' flex justify-center '>
         
           <div >
@@ -40,7 +41,7 @@ async function handleRequest() {
                     </div>
                     <div className=' text-slate-400 text-center'>
                         {type === "signup" ? "Already have an account?" : "Dont have an account?"} 
-                        <Link className='pt-2 underline' to={type === "signup" ? "/signin" : "/signup"}>Login</Link>
+                        <Link className='pt-2 underline pl-1' to={type === "signup" ? "/signin" : "/signup"}>{type === 'signup' ? "Signin" : "Signup"}</Link>
                     </div>
                 </div>
                 <div className='mt-6'>
@@ -69,6 +70,8 @@ async function handleRequest() {
                      focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700
                       dark:focus:ring-gray-700 dark:border-gray-700">{type == "signup"? "Sign Up": "Sign in"}</button>
                 </div>
+                <div className=' underline mt-10 ml-32'>
+                    <Link to={"/"} >Back to Homepage</Link></div>
 
           </div> 
        </div>
