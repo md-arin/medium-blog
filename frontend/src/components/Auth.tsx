@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { Link, json, useNavigate } from 'react-router-dom'
+import  {  useState } from 'react'
+import { Link,  useNavigate } from 'react-router-dom'
 import LabelledInput from './LabelledInput'
 import { SignupInput } from '@me-cyno/medium-common'
 import axios from 'axios'
 import { BACKEND_URL } from "../../config"
-import { useUserdetails } from '../hooks'
+
 
 
 function Auth({type}: {type: "signup" | "signin"}) {

@@ -1,14 +1,10 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/8cjxgjCGtc9
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+
 import { Link }  from "react-router-dom"
-import { useBlog } from "../hooks"
+
 
 
 export default function Landing() {
-    const {loading, blogs} = useBlog();
+    
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
