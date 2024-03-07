@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, json, useNavigate } from 'react-router-dom'
 import LabelledInput from './LabelledInput'
 import { SignupInput } from '@me-cyno/medium-common'
 import axios from 'axios'
 import { BACKEND_URL } from "../../config"
+import { useUserdetails } from '../hooks'
+
 
 function Auth({type}: {type: "signup" | "signin"}) {
     const [postInputs, setPostInputs ] = useState <SignupInput>({
@@ -31,7 +33,7 @@ async function handleRequest() {
 
   return (
     <div className=' h-screen flex justify-center flex-col'>
-        
+    
        <div className=' flex justify-center '>
         
           <div >

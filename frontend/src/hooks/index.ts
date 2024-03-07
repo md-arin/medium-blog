@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { BACKEND_URL } from "../../config"
 
+
 export interface Blog{
     "content": string;
     "title": string;
@@ -22,6 +23,7 @@ export const useBlog = () => {
             }
         })
             .then(res => {
+               
                 setBlogs(res.data.blog);
                 setLoading(false);
             })
@@ -57,4 +59,19 @@ export const useSingleBLog = ({id}: {id: string;}) => {
         loading,
         blog
     }
+}
+
+
+export const useUserdetails = ()=>{
+    const [username, setUsername] = useState("")
+
+    useEffect( ()=> {
+        axios.get(`${BACKEND_URL}/api/v1/user/me`, {
+            headers: {
+                Authorization: localStorage.getItem("token")            }
+        })
+        .then(res => setUsername(res.data.user.name))
+    },[])
+
+    return username
 }

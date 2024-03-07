@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
-import { sign } from 'hono/jwt'
+import { decode, sign } from 'hono/jwt'
 import { signinInput, signupInput } from "@me-cyno/medium-common";
 
 
@@ -12,6 +12,32 @@ export const userRouter = new Hono<{
     }
 }>();
 
+userRouter.get("/me", async (c) => {
+  const authHeader = c.req.header("authorization") || "";
+  const decodedValue =  decode(authHeader);
+
+  if(!decodedValue){
+    return c.json({
+      msg: "user is not authenticated"
+    })
+  }
+  const name = decodedValue.payload.name
+
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate())
+  
+  const user = await prisma.user.findFirst({
+    where: { 
+      id: decodedValue.payload.id
+    }
+  })
+
+  return c.json({
+    user,
+    msg: "User verified"
+  })
+})
 
 userRouter.post('/signup', async(c) => {
     const body  = await c.req.json()
@@ -36,11 +62,11 @@ userRouter.post('/signup', async(c) => {
       })
   
       const jwt = await sign({
+        name: user.name,
         id: user.id
       }, c.env.JWT_SECRET)
   
       return c.json({
-        name: user.name,
         jwt
       })
       
@@ -80,11 +106,12 @@ userRouter.post('/signup', async(c) => {
       }
   
       const jwt = await sign({
+        name: user.name,
         id: user.id
       }, c.env.JWT_SECRET)
   
       return c.json({
-        name: user.name,
+        
         jwt
       })
       
