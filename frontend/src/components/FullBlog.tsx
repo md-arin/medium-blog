@@ -2,6 +2,7 @@
 import { Blog } from '../hooks'
 import Avatar from './Avatar'
 
+
 function FullBlog({ blog }: {blog: Blog}) {
   return (
          <div className=' lg:mx-32'>
