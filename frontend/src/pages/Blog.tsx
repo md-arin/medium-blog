@@ -14,7 +14,6 @@ function Blog() {
   if (loading || !blog) {
     return <div>
         <Appbar />
-    
         <div className="h-screen flex flex-col justify-center">
             
             <div className="flex justify-center">
@@ -26,8 +25,7 @@ function Blog() {
   return (
     <div>
       <Appbar />
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+      
       <FullBlog blog={blog} />
     </div>
   )
