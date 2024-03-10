@@ -1,9 +1,18 @@
 
-import { Link }  from "react-router-dom"
+import { useEffect } from "react"
+import { Link, useNavigate }  from "react-router-dom"
+import { useUserdetails } from "../hooks"
 
 
 
 export default function Landing() {
+ const navigate = useNavigate();
+ const user = useUserdetails();
+
+ if(user){
+  alert("You are already logged in as "+ user)
+  navigate("/blogs")
+ }
     
 
   return (

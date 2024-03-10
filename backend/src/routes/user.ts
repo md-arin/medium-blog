@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
-import { decode, sign } from 'hono/jwt'
+import { decode, sign, verify } from 'hono/jwt'
 import { signinInput, signupInput } from "@me-cyno/medium-common";
 
 
@@ -14,27 +14,29 @@ export const userRouter = new Hono<{
 
 userRouter.get("/me", async (c) => {
   const authHeader = c.req.header("authorization") || "";
-  const decodedValue =  decode(authHeader);
+  const decodedValue =  await verify(authHeader, c.env.JWT_SECRET);
 
   if(!decodedValue){
     return c.json({
       msg: "user is not authenticated"
     })
   }
-  const name = decodedValue.payload.name
+  const name = decodedValue.name
+  const username = decodedValue.username
 
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate())
   
-  const user = await prisma.user.findFirst({
-    where: { 
-      id: decodedValue.payload.id
-    }
-  })
+  // const user = await prisma.user.findFirst({
+  //   where: { 
+  //     id: decodedValue.payload.id
+  //   }
+  // })
 
   return c.json({
-    user,
+    name,
+    username,
     msg: "User verified"
   })
 })
@@ -63,7 +65,8 @@ userRouter.post('/signup', async(c) => {
   
       const jwt = await sign({
         name: user.name,
-        id: user.id
+        id: user.id,
+        username: user.username
       }, c.env.JWT_SECRET)
   
       return c.json({
@@ -107,7 +110,8 @@ userRouter.post('/signup', async(c) => {
   
       const jwt = await sign({
         name: user.name,
-        id: user.id
+        id: user.id,
+        username: user.username
       }, c.env.JWT_SECRET)
   
       return c.json({
@@ -119,4 +123,16 @@ userRouter.post('/signup', async(c) => {
       c.status(411);
       return c.text("invalid")
     }
+  })
+
+  userRouter.get("/allusers", async(c) => {
+    const prisma = new PrismaClient({
+      datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate())
+
+  const users = await prisma.user.findMany({})
+
+  return c.json({
+    users
+  })
   })

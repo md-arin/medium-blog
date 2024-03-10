@@ -63,15 +63,17 @@ export const useSingleBLog = ({id}: {id: string;}) => {
 
 
 export const useUserdetails = ()=>{
-    const [username, setUsername] = useState("")
+    const [userdetails, setUserdetails] = useState("")
+    
 
     useEffect( ()=> {
         axios.get(`${BACKEND_URL}/api/v1/user/me`, {
             headers: {
                 Authorization: localStorage.getItem("token")            }
         })
-        .then(res => setUsername(res.data.user.name))
+        .then(res => setUserdetails(res.data)
+        )
     },[])
 
-    return username
+    return userdetails
 }

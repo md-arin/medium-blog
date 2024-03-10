@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
 import Avatar from "./Avatar"
+import { useUserdetails } from "../hooks"
+import ProfileDropdown from "./Dropdown";
 
 
 
@@ -7,9 +9,10 @@ import Avatar from "./Avatar"
 
 function Appbar() {
 
+  const user = useUserdetails();
+  console.log(user);
+  
 
-  
-  
   return (
     <div className=" border-b flex justify-between px-10 py-5 mb-4">
         <Link to={"/blogs"} className=" flex flex-col justify-center font-semibold text-2xl cursor-pointer">
@@ -23,7 +26,8 @@ function Appbar() {
             dark:hover:bg-green-700 dark:focus:ring-green-800">Write</button>
             </Link>
           </div>
-            <Avatar size="big" name="Lew" />
+            <Avatar size="big" name={user} />
+            <ProfileDropdown name={user} />
         </div>
     </div>
   )
