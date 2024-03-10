@@ -8,20 +8,20 @@ export default function Landing() {
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
-    <div className=" border-b flex justify-between px-10 py-5 mb-4">
+    <div className=" border-b flex justify-evenly md:justify-between px-10 py-5 mb-4">
         <Link to={"/blogs"} className=" flex flex-col justify-center font-semibold text-2xl cursor-pointer">
             write iT
         </Link>
         <div className=" flex">
           <div>
-          <Link to={"/blogs"} className="text-sm font-medium hover:underline underline-offset-4 mx-4">
+          <Link to={"/blogs"} className=" invisible md:visible text-sm font-medium hover:underline underline-offset-4 mx-4">
             Blogs
             </Link>
-          <Link to={"/signin"} className="text-sm font-medium hover:underline underline-offset-4 mx-4">
+          <Link to={"/signin"} className=" invisible md:visible text-sm font-medium hover:underline underline-offset-4 mx-4">
             Signin
             </Link>
             <Link to={"/signup"}>
-            <button type="button" className="text-black bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4
+            <button type="button" className=" text-black bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4
              focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">Get Started</button>
             </Link>
           </div>
