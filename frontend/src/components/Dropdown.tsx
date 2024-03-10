@@ -1,5 +1,5 @@
 import { Dropdown } from 'flowbite-react';
-import { HiCog, HiCurrencyDollar, HiLogout, HiViewGrid } from 'react-icons/hi';
+import { HiLogout, HiViewGrid } from 'react-icons/hi';
 
 export default function ProfileDrop({name}: {name: string}) {
     function logOut(){
