@@ -11,6 +11,7 @@ function Appbar() {
 
   const user = useUserdetails();
   console.log(user);
+
   
 
   return (

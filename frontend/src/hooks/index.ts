@@ -63,7 +63,7 @@ export const useSingleBLog = ({id}: {id: string;}) => {
 
 
 export const useUserdetails = ()=>{
-    const [userdetails, setUserdetails] = useState("")
+    const [name, setName] = useState("")
     
 
     useEffect( ()=> {
@@ -71,9 +71,9 @@ export const useUserdetails = ()=>{
             headers: {
                 Authorization: localStorage.getItem("token")            }
         })
-        .then(res => setUserdetails(res.data)
+        .then(res => setName(res.data.name)
         )
     },[])
 
-    return userdetails
+    return name
 }
