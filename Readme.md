@@ -7,5 +7,5 @@ in this Application users are able to sign in/sign up, posting a blog and seeing
 - Node js
 - Cloudflare Workers
 - Hono
-- Prisma
+- Prisma & Accelerate
 - PostgresQl
