@@ -52,7 +52,7 @@ blogRouter.post('/', async (c) => {
         const blog = await prisma.blog.create({
             data: {
                 title: body.title,
-                content: JSON.stringify(body.content),
+                content: body.content,
                 authorId: Number(authorId)
             }
         })
@@ -144,7 +144,7 @@ blogRouter.get('/:id', async (c) => {
       }).$extends(withAccelerate())
 
     try {
-        const finalContent = await prisma.blog.findFirst({
+        const blog = await prisma.blog.findFirst({
             where: {
                 id: Number(id)
             },
@@ -160,8 +160,7 @@ blogRouter.get('/:id', async (c) => {
             }
         })
 
-        const contents = JSON.stringify({ content: finalContent });
-        const  blog = JSON.parse(contents).content;
+        
        
         return c.json({
             blog

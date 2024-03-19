@@ -29,7 +29,7 @@ function Appbar() {
             dark:hover:bg-green-700 dark:focus:ring-green-800">Write</button>
             </Link>
           </div>
-            <Avatar size="big" />
+            <Avatar name={userDetails.name} size="big" />
             <ProfileDropdown name={userDetails.name} username={userDetails.username} />
         </div>
     </div>

@@ -4,6 +4,7 @@ import Avatar from './Avatar'
 
 
 function FullBlog({ blog }: {blog: Blog}) {
+    const contents = blog.content.split(/\\n/);
   return (
          <div className=' lg:mx-32'>
             <div className=' md:grid grid-cols-12 px-10 w-full pt-10 max-w-screen-2xl'>
@@ -15,7 +16,7 @@ function FullBlog({ blog }: {blog: Blog}) {
                         Posted on 3rd March 2024
                     </div>
                     <div>
-                        {blog.content}
+                        {contents}
                     </div>
                 </div>
                 <div className=' col-span-4'>
