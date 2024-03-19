@@ -2,7 +2,7 @@ import { Dropdown } from 'flowbite-react';
 import { HiLogout, HiViewGrid } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 
-export default function ProfileDrop({name}: {name: string}) {
+export default function ProfileDrop({name, username}: {name: string, username: string}) {
    const navigate = useNavigate();
     function logOut(){
         localStorage.removeItem("token")
@@ -13,7 +13,7 @@ export default function ProfileDrop({name}: {name: string}) {
     <Dropdown label="">
       <Dropdown.Header>
         <span className="block text-sm">{name}</span>
-        <span className="block truncate text-sm font-medium">bonnie@flowbite.com</span>
+        <span className="block truncate text-sm font-medium">{username}</span>
       </Dropdown.Header>
       <Dropdown.Item icon={HiViewGrid}>Forget Password</Dropdown.Item>
       {/* <Dropdown.Item icon={HiCog}>Settings</Dropdown.Item>

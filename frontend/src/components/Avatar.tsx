@@ -1,5 +1,20 @@
+import { useEffect, useState } from "react"
+import axios from "axios"
+import { BACKEND_URL } from "../../config"
 
-function Avatar({name, size= "small"}: {name:string, size:"small" | "big"}) {
+function Avatar({ size= "small"}: { size:"small" | "big"}) {
+ 
+const [name,setName] = useState("");
+
+  useEffect( ()=> {
+    axios.get(`${BACKEND_URL}/api/v1/user/me`, {
+        headers: {
+            Authorization: localStorage.getItem("token")            }
+    })
+    .then(res => setName(res.data.name)
+    )
+},[])
+  
   return (
     <div>
         

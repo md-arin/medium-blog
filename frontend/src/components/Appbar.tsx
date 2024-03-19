@@ -9,8 +9,10 @@ import ProfileDropdown from "./Dropdown";
 
 function Appbar() {
 
-  const user = useUserdetails();
-  console.log(user);
+
+
+  const userDetails = useUserdetails()
+  console.log(userDetails);
 
   
 
@@ -27,8 +29,8 @@ function Appbar() {
             dark:hover:bg-green-700 dark:focus:ring-green-800">Write</button>
             </Link>
           </div>
-            <Avatar size="big" name={user} />
-            <ProfileDropdown name={user} />
+            <Avatar size="big" />
+            <ProfileDropdown name={userDetails.name} username={userDetails.username} />
         </div>
     </div>
   )
