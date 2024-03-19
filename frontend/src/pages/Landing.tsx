@@ -9,7 +9,7 @@ export default function Landing() {
  const user = useUserdetails();
 
  if(user){
-  alert("You are already logged in as "+ user)
+  alert("You are already logged in as "+ user.name)
   navigate("/blogs")
  }
     
