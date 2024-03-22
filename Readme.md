@@ -1,5 +1,5 @@
 ## Blog App
-in this Application users are able to sign in/sign up, posting a blog and seeing other blogs.
+in this Application users are able to sign in or signup, posting a blog and seeing other blogs.
 
 ## Technologies used
 - React
